@@ -13,6 +13,7 @@ namespace searchDojo
 {
     public partial class Form1 : Form
     {
+        Regex pattern;
         public Form1()
         {
             InitializeComponent();
@@ -20,14 +21,16 @@ namespace searchDojo
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            txtOutput.Text = "";
             string[] text = txtInput.Text.Split(' ');
-            Regex pattern = new Regex(txtPattern.Text);
+            pattern = null;
+            pattern = new Regex(txtPattern.Text);
             foreach(string word in text)
             {
                 if(pattern.IsMatch(word))
                 {
                     Console.WriteLine(word);
-                    txtOutput.Text +="\n" + word;
+                    txtOutput.Text += word+ "\n";
                 }
             }
              
